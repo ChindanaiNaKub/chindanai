@@ -140,7 +140,23 @@
     const [name, ...args] = command.split(/\s+/);
     const argString = args.join(" ");
 
-    const handler = COMMANDS[name];
+    // Resolve command by exact match, otherwise by unique prefix (e.g., "ab" -> "about")
+    let handler = COMMANDS[name];
+    let resolvedName = name;
+
+    if(!handler && name){
+      const commandsList = Object.keys(COMMANDS);
+      const prefixMatches = commandsList.filter(commandName => commandName.startsWith(name));
+      if(prefixMatches.length === 1){
+        resolvedName = prefixMatches[0];
+        handler = COMMANDS[resolvedName];
+      } else if(prefixMatches.length > 1){
+        await appendOutput(`Ambiguous command "${name}". Did you mean: ${prefixMatches.join(", ")}?`);
+        scrollToBottom();
+        return;
+      }
+    }
+
     if(handler){
       const result = await handler(argString, args);
       if(result !== undefined){ await appendOutput(result); }
