@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Minimal Linux terminal-style portfolio and resume landing page." />
+    <meta name="theme-color" content="#0b0f10" />
+    <title>Terminal Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="dark">
+    <canvas id="bg" aria-hidden="true"></canvas>
+    <main class="desktop" id="app">
+      <section class="window" aria-label="Terminal window">
+        <header class="titlebar" aria-hidden="true">
+          <div class="traffic">
+            <span class="dot dot--close" title="Close"></span>
+            <span class="dot dot--min" title="Minimize"></span>
+            <span class="dot dot--max" title="Maximize"></span>
+          </div>
+          <div class="title" title="Chindanai Jaiman — ~/portfolio">Chindanai Jaiman — ~/portfolio</div>
+        </header>
+        <div class="terminal" id="terminal" role="region" aria-label="Interactive terminal">
+          <div id="history" class="history" aria-live="polite" aria-atomic="false"></div>
+          <div class="prompt-line" id="prompt-line">
+            <span class="prompt" aria-hidden="true"><span class="user">guest</span>@<span class="host">portfolio</span>:<span class="path">~</span>$</span>
+            <input id="cmd" class="cmd" type="text" inputmode="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Terminal command input" placeholder="type 'help' and press Enter" />
+          </div>
+        </div>
+      </section>
+      <p class="hint" aria-hidden="true">Tip: click anywhere to focus. Try <code>help</code>, <code>about</code>, <code>projects</code>, <code>contact</code>.</p>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
