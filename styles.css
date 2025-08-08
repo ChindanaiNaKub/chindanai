@@ -70,6 +70,15 @@ body{
 }
 .cmd::placeholder{color:var(--muted)}
 
+/* Inline suggestion for autocomplete */
+.suggestion{
+  color: var(--muted);
+  opacity: 0.7;
+  font-style: italic;
+  white-space: pre;
+  pointer-events: none;
+}
+
 .line{white-space:pre-wrap}
 .line--input{display:flex; gap:12px}
 .output{color:var(--fg)}

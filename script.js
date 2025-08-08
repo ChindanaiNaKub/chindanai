@@ -4,6 +4,7 @@
   const terminalElement = document.getElementById("terminal");
   const historyElement = document.getElementById("history");
   const inputElement = document.getElementById("cmd");
+  const suggestionElement = document.getElementById("suggestion");
   const promptText = "guest@portfolio:~$";
   const rootElement = document.documentElement;
   const bgCanvas = document.getElementById("bg");
@@ -377,6 +378,7 @@
       localStorage.setItem("term.history", JSON.stringify(cmdHistory));
       historyIndex = cmdHistory.length;
       inputElement.value = "";
+      if(suggestionElement){ suggestionElement.textContent = ""; }
       handleCommand(value);
       e.preventDefault();
       return;
@@ -402,8 +404,25 @@
       if(matches.length === 1){
         const completed = matches[0] + (rest.length ? " " + rest.join(" ") : " ");
         inputElement.value = completed;
+        if(suggestionElement){ suggestionElement.textContent = ""; }
       }
       e.preventDefault();
+    }
+  });
+
+  // Live suggestion: show unique autocomplete match in muted text
+  inputElement.addEventListener("input", ()=>{
+    if(!suggestionElement) return;
+    const current = inputElement.value;
+    const [name] = current.split(/\s+/);
+    const partial = name || "";
+    if(!partial){ suggestionElement.textContent = ""; return; }
+    const cmds = Object.keys(COMMANDS);
+    const matches = cmds.filter(c => c.startsWith(partial));
+    if(matches.length === 1 && matches[0] !== partial){
+      suggestionElement.textContent = matches[0];
+    } else {
+      suggestionElement.textContent = "";
     }
   });
 
