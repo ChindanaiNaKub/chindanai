@@ -17,19 +17,29 @@
   let matrixCols = [];
   let wavesPhase = 0;
 
-  /**
-   * Replace these with your real data.
-   */
   const PROFILE = {
     name: "Chindanai Jaiman",
     nickname: "prab",
-    role: "Software Engineering Student (3rd year)",
+    role: "Software Engineering Student",
     location: "Chiang Mai, Thailand",
     email: "chindanai_jaiman@cmu.ac.th",
-    website: "https://bettermango.vercel.app/",
+    website: "https://chindanainakub.github.io/chindanai/",
     github: "https://github.com/ChindanaiNaKub",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/chindanai/",
     lineId: "prabcj",
+    repos: 63,
+    followers: 31,
+    githubSince: "2024",
+  };
+
+  const PROJECTS = {
+    featured: [
+      { key:'generalPippy', name:'generalPippy', url:'https://github.com/ChindanaiNaKub/generalPippy', desc:'Self-Driving Goal Agent for OpenCode.' },
+      { key:'skills-tui', name:'skills-tui', url:'https://github.com/ChindanaiNaKub/skills-tui', desc:'Interactive TUI for managing AI agent skills.' },
+      { key:'thaichess', name:'ThaiChess', url:'https://thaichess.dev/', desc:'Makruk Thai chess — https://thaichess.dev/' },
+      { key:'OpenMatthew', name:'OpenMatthew', url:'https://github.com/ChindanaiNaKub/OpenMatthew', desc:'OpenCode plugin for CMU Matthew AI auth.' },
+    ],
+    more: []
   };
 
   const HELP_TEXT = [
@@ -39,6 +49,7 @@
     "  about           - A short bio",
     "  skills          - Key technologies",
     "  projects        - Selected projects",
+    "  github          - GitHub profile snapshot",
     "  experience      - Work history (brief)",
     "  education       - Education (brief)",
     "  contact         - How to reach me",
@@ -66,13 +77,17 @@
     "~": {
       type: "dir",
       children: {
-        about: { type: "file", content: "Hi, I'm ${name} (${nickname}). I'm a 3rd-year Software Engineering student at Chiang Mai University. I like using AI tools to prepare before coding and to learn faster." },
+        about: { type: "file", content: "Hi, I'm ${name} (${nickname}). I'm a Software Engineering student at Chiang Mai University. I like using AI tools to prepare before coding, learn faster, and build practical projects." },
         projects: { type: "dir", children: {
+          generalPippy: { type: "file", content: "generalPippy — Self-Driving Goal Agent for OpenCode. https://github.com/ChindanaiNaKub/generalPippy" },
+          skillsTui: { type: "file", content: "skills-tui — Interactive TUI for managing AI agent skills. https://github.com/ChindanaiNaKub/skills-tui" },
+          thaichess: { type: "file", content: "ThaiChess — Makruk Thai chess project. https://thaichess.dev/" },
+          openMatthew: { type: "file", content: "OpenMatthew — OpenCode plugin for CMU Matthew AI auth. https://github.com/ChindanaiNaKub/OpenMatthew" },
           bettermango: { type: "file", content: "BetterMango — alternative to CMU Mango using AI. https://bettermango.vercel.app/" },
-          huaythai: { type: "file", content: "HuayThai — Thai lottery data (35 years) with AI chat. https://www.huaythai.store/" },
-          aigenfootball: { type: "file", content: "AI Gen Football — AI chatbot using Gemini (currently broken). https://aigenfootball.vercel.app/" },
+          neobrutalism: { type: "file", content: "Neobrutalism Components Skill — adaptive UI components for AI coding agents. https://github.com/ChindanaiNaKub/neobrutalism-components-skill" },
+
         }},
-        contact: { type: "file", content: "Email: ${email}\nGitHub: ${github}\nLine: ${lineId}" },
+        contact: { type: "file", content: "Email: ${email}\nWebsite: ${website}\nGitHub: ${github}\nLinkedIn: ${linkedin}\nLine: ${lineId}" },
       }
     }
   };
@@ -208,63 +223,79 @@
     async about(){
       return [
         `${PROFILE.name} (${PROFILE.nickname}) is a ${PROFILE.role} at Chiang Mai University, based in ${PROFILE.location}.`,
-        "Enjoys using AI tools to prepare before coding and to learn faster.",
+        "I like building practical projects with a strong AI-assisted workflow: research first, prototype fast, then simplify the interface until it is useful.",
       ];
     },
 
     async skills(){
       return [
         "Languages: HTML, CSS, JavaScript, TypeScript, C#, Python, SQL",
+        "Frontend: simple static sites, React/Next.js when needed, Tailwind/shadcn patterns",
         "Tools/Platforms: Docker, GitHub CI/CD, Supabase, Vercel, Resend, OpenRouter",
-        "Interests: AI-assisted development",
+        "Interests: AI-assisted development, AI agents, useful student tools, chess/game projects, UI systems",
       ];
     },
 
     async projects(){
       const frag = document.createDocumentFragment();
-      const lines = [
-        ["BetterMango", "https://bettermango.vercel.app/", "bettermango.vercel.app"],
-        ["HuayThai", "https://www.huaythai.store/", "huaythai.store"],
-        ["AI Gen Football", "https://aigenfootball.vercel.app/", "aigenfootball.vercel.app"],
-        ["GitHub (more)", "https://github.com/ChindanaiNaKub", "github.com/ChindanaiNaKub"],
-      ];
-      for(const [label, href, text] of lines){
+      for(const p of [...PROJECTS.featured, ...PROJECTS.more]){
         const line = document.createElement("div");
         line.className = "output";
         const strong = document.createElement("strong");
-        strong.textContent = label + ": ";
+        strong.textContent = p.name + ": ";
         const a = document.createElement("a");
-        a.href = href; a.target = "_blank"; a.rel = "noopener"; a.textContent = text;
+        a.href = p.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = p.url;
         line.appendChild(strong);
         line.appendChild(a);
         frag.appendChild(line);
       }
+      // GitHub more link
+      const line = document.createElement("div");
+      line.className = "output";
+      const strong = document.createElement("strong");
+      strong.textContent = "GitHub (more): ";
+      const a = document.createElement("a");
+      a.href = "https://github.com/ChindanaiNaKub"; a.target = "_blank"; a.rel = "noopener";
+      a.textContent = "github.com/ChindanaiNaKub";
+      line.appendChild(strong);
+      line.appendChild(a);
+      frag.appendChild(line);
       return frag;
+    },
+
+    async github(){
+      return [
+        `GitHub: ${PROFILE.github}`,
+        `Public repositories: ${PROFILE.repos}`,
+        `Followers: ${PROFILE.followers}`,
+        `Profile active since: ${PROFILE.githubSince}`,
+        "Recent focus: generalPippy, skills-tui, ThaiChess, OpenMatthew, AI/student utility projects",
+      ];
     },
 
     async experience(){
       return [
-        "No formal work experience yet — actively building projects on GitHub.",
+        "No formal work experience listed yet — actively building and publishing projects on GitHub.",
       ];
     },
 
     async education(){
       return [
-        "Bangkok Christain College — Primary",
+        "Bangkok Christian College — Primary",
         "Bunyawat Witthayalai School — High School",
-        "Chiang Mai University — Software Engineering (3rd year)",
+        "Chiang Mai University — Software Engineering",
       ];
     },
 
     async contact(){
       const frag = document.createDocumentFragment();
-
       const lines = [
         ["Email", `mailto:${PROFILE.email}`, PROFILE.email],
+        ["Website", PROFILE.website, PROFILE.website],
         ["GitHub", PROFILE.github, PROFILE.github],
-        ["Line", `https://line.me/R/ti/p/~${PROFILE.lineId}` , PROFILE.lineId],
+        ["LinkedIn", PROFILE.linkedin, PROFILE.linkedin],
+        ["Line", `https://line.me/R/ti/p/~${PROFILE.lineId}`, PROFILE.lineId],
       ];
-
       for(const [label, href, text] of lines){
         const line = document.createElement("div");
         line.className = "output";
@@ -276,7 +307,6 @@
         line.appendChild(a);
         frag.appendChild(line);
       }
-
       return frag;
     },
 
@@ -359,6 +389,7 @@
       startBackground();
       return `Background set to ${mode}`;
     },
+
   };
 
   // Wire up interactions
@@ -456,10 +487,38 @@
   appendLine(promptText + " welcome!", "output--muted");
   renderBanner();
   appendOutput([`Welcome to ${PROFILE.name}'s terminal portfolio.`, "Type 'help' to see available commands."]);
+  renderFeaturedProjects();
   scrollToBottom();
 
   // Autofocus on load
   setTimeout(focusInput, 50);
+
+  function renderFeaturedProjects(){
+    const grid = document.getElementById("featured-grid");
+    if(!grid) return;
+    grid.innerHTML = "";
+    for(const p of PROJECTS.featured){
+      const article = document.createElement("article");
+      article.className = "project-card";
+      
+      const h3 = document.createElement("h3");
+      h3.className = "project-card__title";
+      const a = document.createElement("a");
+      a.href = p.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = p.name;
+      h3.appendChild(a);
+      article.appendChild(h3);
+      
+      const desc = document.createElement("p");
+      desc.className = "project-card__desc";
+      desc.setAttribute("data-pretext", "");
+      desc.textContent = p.desc;
+      article.appendChild(desc);
+      
+      grid.appendChild(article);
+    }
+  }
+
+
 
   // ===== Background helpers =====
   function sizeCanvas(){

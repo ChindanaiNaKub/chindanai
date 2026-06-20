@@ -1,16 +1,18 @@
-# Terminal Portfolio
+# Chindanai Jaiman Portfolio
 
-A minimal, keyboard-friendly terminal-style portfolio. Pure HTML/CSS/JS — no build step.
+A keyboard-friendly terminal-style portfolio with a compact GitHub profile overview. Pure HTML/CSS/JS — no build step.
 
 ## Features
 - Interactive terminal UI with typewriter output and animated backgrounds
+- GitHub-style profile rail with featured projects and avatar
+- Optional Pretext-powered project text wrapping through an ESM CDN import
 - Built-in commands: navigation (ls/cd/cat), theme/background toggles, and portfolio sections
-- Zero dependencies; deploy anywhere that serves static files
+- No npm install required; deploy anywhere that serves static files
 
 ## Commands
 - `help` — list commands
 - `whoami` — name and role
-- `about`, `skills`, `projects`, `experience`, `education` — info sections
+- `about`, `skills`, `projects`, `github`, `experience`, `education` — info sections
 - `contact` — links
 - `clear` — clear the screen
 - `ls`, `cd`, `cat` — explore a small in-memory filesystem
