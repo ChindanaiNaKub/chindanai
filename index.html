@@ -1,16 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Minimal Linux terminal-style portfolio and resume landing page." />
-    <meta name="theme-color" content="#0b0f10" />
-    <title>Terminal Portfolio</title>
+    <meta name="description" content="Chindanai Jaiman's portfolio — software engineering student building AI-assisted tools." />
+    <meta name="theme-color" content="#0f1117" />
+    <title>Chindanai Jaiman | Portfolio</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-theme="dark">
     <canvas id="bg" aria-hidden="true"></canvas>
-    <main class="desktop" id="app">
+    <main class="app" id="app">
+      <section class="hero" aria-label="Profile overview">
+        <div class="hero__identity">
+          <img class="avatar" src="https://avatars.githubusercontent.com/u/189831843?v=4" alt="Chindanai Jaiman" />
+          <div class="hero__text">
+            <p class="eyebrow">github.com/ChindanaiNaKub</p>
+            <h1>Chindanai Jaiman</h1>
+            <p class="lede">Software engineering student in Chiang Mai building AI-assisted tools, useful web apps, and small systems that solve real daily problems.</p>
+            <div class="hero__socials">
+              <a href="https://chindanainakub.github.io/chindanai/" target="_blank" rel="noopener" class="social-link">Website</a>
+              <a href="https://github.com/ChindanaiNaKub" target="_blank" rel="noopener" class="social-link">GitHub</a>
+              <a href="https://www.linkedin.com/in/chindanai/" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+        <div class="stats" aria-label="GitHub profile stats">
+          <div><strong>63</strong><span>public repos</span></div>
+          <div><strong>31</strong><span>followers</span></div>
+          <div><strong>CMU</strong><span>software engineering</span></div>
+        </div>
+      </section>
+
+      <section class="featured" aria-label="Featured projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="featured__grid" id="featured-grid"></div>
+        <noscript>
+          <p style="color:var(--muted)">Enable JavaScript to see featured projects.</p>
+        </noscript>
+      </section>
+
       <section class="window" aria-label="Terminal window">
         <header class="titlebar" aria-hidden="true">
           <div class="traffic">
@@ -32,6 +61,6 @@
       <p class="hint" aria-hidden="true">Tip: click anywhere to focus. Try <code>help</code>, <code>about</code>, <code>projects</code>, <code>contact</code>.</p>
     </main>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
